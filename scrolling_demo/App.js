@@ -15,14 +15,14 @@ const App = () => {
     axios({
       method: 'get',
       url: 'https://gorest.co.in/public/v2/todos',
-    }).then(function (response) {
-      setUsers([...users,response.data]);
-      console.log(">>>>>>>>>>>",users)
+    }).then(response => {
+      setUsers([...users, response.data]);
+      console.log('>>>>>>>>>>>', users);
     });
   };
-  const renderItem = ({item,index}) => {
+  const renderItem = ({item, index}) => {
     if (index > 19) {
-      index = (index % 10);
+      index = index % 10;
     }
     return (
       <View>
@@ -31,7 +31,6 @@ const App = () => {
           <Text>title: {item[index].title}</Text>
           <Text>Due_on: {item[index].due_on}</Text>
           <Text>Status: {item[index].status}</Text>
-          {/* {console.log("item>>",item[index])} */}
         </View>
       </View>
     );
@@ -40,7 +39,7 @@ const App = () => {
   const renderLoader = () => {
     return (
       <View style={StyleSheet.loaderStyle}>
-        <ActivityIndicator size="large" color="#aaa" />
+        <ActivityIndicator size="large" color="black" />
       </View>
     );
   };
@@ -48,18 +47,17 @@ const App = () => {
   const loadMoreItem = () => {
     console.log('load more items');
     getUsers();
-  
   };
 
   useEffect(() => {
     getUsers();
-  },[]);
+  }, []);
 
   return (
     <FlatList
       data={users}
       renderItem={renderItem}
-      keyExtractor = {(item, index) => index } 
+      keyExtractor={(item, index) => index}
       ListFooterComponent={renderLoader}
       onEndReached={loadMoreItem}
       onEndReachedThreshold={0.5}
