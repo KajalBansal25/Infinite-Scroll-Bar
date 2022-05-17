@@ -55,12 +55,16 @@ const App = () => {
 
   return (
     <FlatList
+      style={{borderWidth: 1, backgroundColor: 'yellow'}}
       data={users}
       renderItem={renderItem}
       keyExtractor={(item, index) => index}
       ListFooterComponent={renderLoader}
       onEndReached={loadMoreItem}
       onEndReachedThreshold={0.5}
+      sidebar="visible"
+      showsVerticalScrollIndicator={true}
+      contentContainerStyle={{marginHorizontal: 5, backgroundColor: 'white'}}
     />
   );
 };
