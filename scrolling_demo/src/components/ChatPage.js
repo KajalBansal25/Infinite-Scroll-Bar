@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  FlatList,
   TextInput,
   ScrollView,
-  ActivityIndicator,
   StyleSheet,
   View,
   TouchableOpacity,
@@ -16,35 +14,48 @@ const ChatPage = () => {
   const [items, setItems] = useState([]);
 
   const addMessage = () => {
-    console.log('ppp', input);
+    console.log('>>>', input);
     setItems([...items, input]);
     setInput('');
   };
 
   return (
-    <ScrollView style={{}}>
-      <View style={{borderWidth: 1, marginHorizontal: 10, marginTop: 10}}>
-        {items.map((item, index) => {
-          return (
-            <View
-              style={{
-                backgroundColor: index % 2 == 0 ? '#aaa' : '#ddd',
-
-                borderRadius: 20,
-                marginVertical: 2,
-                paddingVertical: 10,
-              }}>
-              <Text
+    <View style={{flex: 1}}>
+      <ScrollView style={{}}>
+        <View
+          style={{
+            // borderWidth: 2,
+            marginHorizontal: 10,
+            marginTop: 10,
+            flex: 1,
+          }}>
+          {items.map((item, index) => {
+            return (
+              <View
+                key={index}
                 style={{
-                  fontSize: 25,
-                  marginHorizontal: 20,
-                  textAlign: index % 2 == 0 ? 'left' : 'right',
+                  marginVertical: 2,
+                  paddingVertical: 10,
+                  alignItems: index % 2 == 0 ? 'flex-start' : 'flex-end',
+                  // borderWidth:5,
                 }}>
-                {item}
-              </Text>
-            </View>
-          );
-        })}
+                <Text
+                  style={{
+                    maxWidth: '70%',
+                    borderRadius: 20,
+                    padding: 10,
+                    fontSize: 25,
+                    textAlign: index % 2 == 0 ? 'left' : 'right',
+                    backgroundColor: '#ddd',
+                  }}>
+                  {item}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
+      <View style={{}}>
         <TextInput
           defaultValue={input}
           onChangeText={userdata => setInput(userdata)}
@@ -56,11 +67,17 @@ const ChatPage = () => {
             source={{
               uri: 'https://www.kindpng.com/picc/m/307-3073858_submit-now-clipart-icon-hd-png-download.png',
             }}
-            style={{height: 30, width: 30, marginLeft: 330, marginTop: -300}}
+            style={{
+              height: 30,
+              width: 30,
+              marginLeft: 330,
+              marginTop: -50,
+              alignItems: 'flex-end',
+            }}
           />
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -70,10 +87,13 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
     borderWidth: 1,
-    marginHorizontal: 50,
+    // marginHorizontal: 50,
     // backgroundColor: '#rgba(14,14,14,0.01)',
     backgroundColor: 'white',
-    marginVertical: 250,
+    // marginVertical: 20,
     borderColor: 'blue',
+    borderTopWidth: 1,
+    // alignItems:"flex-end",
+    paddingRight: 70,
   },
 });
