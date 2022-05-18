@@ -12,16 +12,21 @@ import {
 
 const ChatPage = () => {
   const [input, setInput] = useState('');
-  const [items, setItems] = useState([]);
   const [currTime, setCurrTime] = useState('');
   const [username, setUsername] = useState('kajal');
+  const [items, setItems] = useState([]);
+
+  const timestamp = new Date().getTime(); 
+
 
   const addMessage = () => {
     console.log('>>>', input);
-    setItems([...items, input]);
+    let message={text:input,id: timestamp,user:username}
+    setItems([...items, message]);
     setInput('');
     let time = moment().utcOffset('+05:30').format('hh:mm:ss a');
     setCurrTime(time);
+    console.log("items>>>",items);
   };
 
   return (
@@ -50,7 +55,8 @@ const ChatPage = () => {
                     textAlign: index % 2 == 0 ? 'left' : 'right',
                     backgroundColor: '#ddd',
                   }}>
-                  <Text style={{fontSize: 25}}> {item}</Text>
+                  <Text style={{fontSize: 25}}> {item.text}</Text>
+                  {console.log("text>>>",item.text)}
                   <View
                     style={{
                       flexDirection: 'row',
@@ -63,13 +69,13 @@ const ChatPage = () => {
                         fontSize: 10,
                         justifyContent: 'flex-end',
                       }}>
-                      {username}
+                      {item.user}
                     </Text>
                     <Text
                       style={{
                         fontSize: 10,
                       }}>
-                      {currTime}
+                      {moment(item.id).format('hh:mm:ss a')}
                     </Text>
                   </View>
                 </View>
