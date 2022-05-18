@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import moment from 'moment';
 import {
   TextInput,
   ScrollView,
@@ -12,11 +13,15 @@ import {
 const ChatPage = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
+  const [currTime, setCurrTime] = useState('');
+  const [username, setUsername] = useState('kajal');
 
   const addMessage = () => {
     console.log('>>>', input);
     setItems([...items, input]);
     setInput('');
+    let time = moment().utcOffset('+05:30').format('hh:mm:ss a');
+    setCurrTime(time);
   };
 
   return (
@@ -24,7 +29,6 @@ const ChatPage = () => {
       <ScrollView style={{}}>
         <View
           style={{
-            // borderWidth: 2,
             marginHorizontal: 10,
             marginTop: 10,
             flex: 1,
@@ -37,19 +41,38 @@ const ChatPage = () => {
                   marginVertical: 2,
                   paddingVertical: 10,
                   alignItems: index % 2 == 0 ? 'flex-start' : 'flex-end',
-                  // borderWidth:5,
                 }}>
-                <Text
+                <View
                   style={{
                     maxWidth: '70%',
                     borderRadius: 20,
                     padding: 10,
-                    fontSize: 25,
                     textAlign: index % 2 == 0 ? 'left' : 'right',
                     backgroundColor: '#ddd',
                   }}>
-                  {item}
-                </Text>
+                  <Text style={{fontSize: 25}}> {item}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+
+                      justifyContent: 'flex-end',
+                    }}>
+                    <Text
+                      style={{
+                        marginRight: 10,
+                        fontSize: 10,
+                        justifyContent: 'flex-end',
+                      }}>
+                      {username}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 10,
+                      }}>
+                      {currTime}
+                    </Text>
+                  </View>
+                </View>
               </View>
             );
           })}
@@ -87,13 +110,9 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
     borderWidth: 1,
-    // marginHorizontal: 50,
-    // backgroundColor: '#rgba(14,14,14,0.01)',
     backgroundColor: 'white',
-    // marginVertical: 20,
     borderColor: 'blue',
     borderTopWidth: 1,
-    // alignItems:"flex-end",
     paddingRight: 70,
   },
 });
