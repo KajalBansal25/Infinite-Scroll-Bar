@@ -15,9 +15,13 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerStyle: {backgroundColor: '#27d9bb'},
+        headerStyle: {backgroundColor: '#0de78c'},
         headerStatusBarHeight: 20,
         headerTintColor: 'white',
+        tabBarShowLabel:false,
+        tabBarHideOnKeyboard: true,
+        // tabBarStyle:{display:"none"}
+
       }}
       initialRouteName="order"
       style={styles.shadow}>
@@ -29,7 +33,7 @@ function MyTabs() {
             let iconName;
             iconName = 'home';
             size = focused ? 25 : 20;
-            color = focused ? '#27d9bb' : '#555';
+            color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         }}
@@ -42,7 +46,7 @@ function MyTabs() {
             let iconName;
             iconName = 'shopping-cart';
             size = focused ? 25 : 20;
-            color = focused ? '#27d9bb' : '#555';
+            color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         }}
@@ -56,7 +60,7 @@ function MyTabs() {
             let iconName;
             iconName = 'store';
             size = focused ? 25 : 20;
-            color = focused ? '#27d9bb' : '#555';
+            color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         }}
@@ -69,7 +73,7 @@ function MyTabs() {
             let iconName;
             iconName = 'hire-a-helper';
             size = focused ? 25 : 20;
-            color = focused ? '#27d9bb' : '#555';
+            color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         }}
@@ -82,7 +86,7 @@ function MyTabs() {
             let iconName;
             iconName = 'book-open';
             size = focused ? 25 : 20;
-            color = focused ? '#27d9bb' : '#555';
+            color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         }}

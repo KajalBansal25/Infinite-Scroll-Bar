@@ -1,29 +1,112 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
   View,
   TouchableOpacity,
-  Text,
+  TextInput,
   Image,
+  Text,
 } from 'react-native';
 
 const Order = () => {
+  const [search, setSearch] = useState('');
+
+  let items = [
+    {
+      orderId: '9810780049',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+    {
+      orderId: '9810780050',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Guptas Grocery Store',
+    },
+    {
+      orderId: '9810780051',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'jindal Grocery Store',
+    },
+    {
+      orderId: '9810780052',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+    {
+      orderId: '9810780053',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+    {
+      orderId: '9810780054',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+    {
+      orderId: '9810780055',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+    {
+      orderId: '9810780056',
+      cost: '₹ 4,784',
+      quantity: '(7 Items)',
+      status: 'open',
+      date: '21 Jun,2021',
+      store: 'Gupta Grocery Store',
+    },
+  ];
+  const [searchedItem, setSearchedItem] = useState(items);
+
+  const filterList = () => {
+    const order = items.filter(
+      listItem =>
+        (listItem.orderId &&
+          listItem.store &&
+          listItem.orderId.toLowerCase().includes(search.toLowerCase())) ||
+        listItem.store.toLowerCase().includes(search.toLowerCase()),
+    );
+    setSearchedItem(order);
+  };
+
   return (
     <View style={{position: 'relative'}}>
       <TouchableOpacity
         style={{
           flexDirection: 'row',
           padding: 10,
-          backgroundColor: '27d9bb',
+          backgroundColor: '#0de78c',
           zIndex: 1,
-          backgroundColor: '#27d9bb',
           maxWidth: '50%',
           marginHorizontal: 100,
           alignItems: 'center',
           borderRadius: 10,
           position: 'absolute',
           bottom: 80,
+          // add shadows for Android only
+          elevation: 10,
         }}>
         <Image
           style={{height: 30, width: 30, tintColor: 'white'}}
@@ -35,315 +118,110 @@ const Order = () => {
           New Order
         </Text>
       </TouchableOpacity>
-      <View>
+      <View style={{}}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             paddingHorizontal: 20,
-            paddingVertical: 20,
+            paddingVertical: 10,
             backgroundColor: 'white',
+            alignItems: 'center',
           }}>
-          <Text style={{fontSize: 20, fontWeight: '700'}}>
-            178 Orders worth ₹ 67,400
-          </Text>
-          <Image
-            style={{height: 25, width: 25}}
-            source={{
-              uri: 'https://cdn-icons-png.flaticon.com/512/2948/2948037.png',
+          <TextInput
+            style={{
+              fontSize: 20,
+              fontWeight: '700',
+              borderWidth: 1,
+              flex: 1,
+              marginRight: 10,
             }}
+            placeholder="Search "
+            onChangeText={searched => setSearch(searched)}
           />
+          {console.log('item to be searched>>', search)}
+          <TouchableOpacity onPress={() => filterList()} style={{}}>
+            <Image
+              style={{height: 35, width: 35,tintColor:"black"}}
+              source={{
+                uri:'https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-5.png',
+              }}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
-      <ScrollView style={{}}>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
+      <ScrollView style={{borderWidth: 0, marginBottom: 70}} contentInset={{}}>
+        {searchedItem.map((item, index) => {
+          return (
+            <View
+              style={{
+                backgroundColor: 'white',
+                marginHorizontal: 20,
+                marginVertical: 10,
+                borderRadius: 10,
+                elevation: 10,
+              }}
+              key={index}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 20,
+                  paddingVertical: 30,
+                  flexWrap: 'wrap',
+                  flexDirection: 'row',
+                }}>
+                <View style={{}}>
+                  <Text>{item.orderId}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                    }}>
+                    <Text
+                      style={{
+                        fontWeight: '800',
+                        fontSize: 20,
+                        marginRight: 10,
+                      }}>
+                      {item.cost}
+                    </Text>
+                    <Text>{item.quantity}</Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    alignItems: 'flex-end',
+                  }}>
+                  <Text
+                    style={{
+                      backgroundColor: '#457fde',
+                      color: 'white',
+                      textAlign: 'center',
+                      maxWidth: '50%',
+                      fontWeight: '700',
+                      borderRadius: 2,
+                      padding: 5,
+                    }}>
+                    {item.status}
+                  </Text>
+                  <Text>{item.date}</Text>
+                  <Text style={{fontWeight: '700'}}>{item.store}</Text>
+                </View>
+                <View style={{justifyContent: 'center'}}>
+                  <Image
+                    style={{height: 30, width: 30, tintColor: 'grey'}}
+                    source={{
+                      uri: 'https://cdn2.iconfinder.com/data/icons/mobile-web-apps-1/32/arrow_right-512.png',
+                    }}
+                  />
+                </View>
               </View>
             </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'white',
-            margin: 20,
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-            }}>
-            <View>
-              <Text>Order ID:9810780049</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text
-                  style={{fontWeight: '800', fontSize: 20, marginRight: 10}}>
-                  ₹ 4,784
-                </Text>
-                <Text>(7 Items)</Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                style={{
-                  backgroundColor: '#457fde',
-                  color: 'white',
-                  textAlign: 'center',
-                  maxWidth: '50%',
-                  fontWeight: '700',
-                  borderRadius: 2,
-                  padding: 5,
-                }}>
-                Open
-              </Text>
-              <Text>21 Jun,2021</Text>
-              <Text style={{fontWeight: '700'}}>Gupta Grocery Store</Text>
-            </View>
-          </View>
-        </View>
+          );
+        })}
       </ScrollView>
     </View>
   );
