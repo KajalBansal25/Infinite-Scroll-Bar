@@ -7,6 +7,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import HomePage from './src/components/HomePage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,8 +27,8 @@ function MyTabs() {
       initialRouteName="order"
       style={styles.shadow}>
       <Tab.Screen
-        name="Orders"
-        component={Order}
+        name="homepage"
+        component={HomePage}
         options={{
           tabBarIcon: ({focused, size, color}) => {
             let iconName;
@@ -67,7 +68,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="HelpDesk"
-        component={Order}
+        component={InfiniteScrolling}
         options={{
           tabBarIcon: ({focused, size, color}) => {
             let iconName;
@@ -80,7 +81,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="instructions"
-        component={Order}
+        component={ChatPage}
         options={{
           tabBarIcon: ({focused, size, color}) => {
             let iconName;
