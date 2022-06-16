@@ -27,7 +27,7 @@ function MyTabs() {
       initialRouteName="order"
       style={styles.shadow}>
       <Tab.Screen
-        name="homepage"
+        name="Homepage"
         component={HomePage}
         options={{
           tabBarIcon: ({focused, size, color}) => {
@@ -37,6 +37,7 @@ function MyTabs() {
             color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
+          headerShown:false
         }}
       />
       <Tab.Screen
