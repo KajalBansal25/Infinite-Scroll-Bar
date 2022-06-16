@@ -22,6 +22,14 @@ const HomePage = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
+        <TouchableOpacity onPress={()=>{}}>
+          <Image
+            style={{height: 40, width: 40}}
+            source={{
+              uri: 'https://cdn.icon-icons.com/icons2/930/PNG/512/menu_icon-icons.com_72311.png',
+            }}
+          />
+        </TouchableOpacity>
         <Text
           style={{
             color: 'white',
