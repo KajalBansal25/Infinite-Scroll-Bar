@@ -8,9 +8,46 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import HomePage from './src/components/HomePage';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import 'react-native-gesture-handler';
+
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+
+
+function MyDrawer() {
+  const Drawer = createDrawerNavigator();
+
+
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={MyTabs} />
+    </Drawer.Navigator>
+  );
+}
+
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button
+        onPress={() => navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
+    </View>
+  );
+}
+
+function NotificationsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
+  );
+}
+
 
 function MyTabs() {
   return (
@@ -101,10 +138,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="bottomTab"
           component={MyTabs}
           options={{headerShown: false}}
+        /> */}
+        <Stack.Screen
+          name="drawer"
+          component={MyDrawer}
         />
       </Stack.Navigator>
     </NavigationContainer>

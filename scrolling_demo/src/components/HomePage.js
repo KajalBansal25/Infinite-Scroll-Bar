@@ -10,8 +10,9 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View
@@ -22,7 +23,10 @@ const HomePage = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <TouchableOpacity onPress={()=>{}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.dispatch(DrawerActions.openDrawer())
+          }}>
           <Image
             style={{height: 40, width: 40}}
             source={{
