@@ -8,30 +8,29 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import HomePage from './src/components/HomePage';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
-
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-
 function MyDrawer() {
   const Drawer = createDrawerNavigator();
 
-
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={MyTabs} />
+      <Drawer.Screen
+        name="Home"
+        component={MyTabs}
+        options={{headerShown: false}}
+      />
     </Drawer.Navigator>
   );
 }
 
-function HomeScreen({ navigation }) {
+function HomeScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button
         onPress={() => navigation.navigate('Notifications')}
         title="Go to notifications"
@@ -40,14 +39,13 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function NotificationsScreen({ navigation }) {
+function NotificationsScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
   );
 }
-
 
 function MyTabs() {
   return (
@@ -56,10 +54,9 @@ function MyTabs() {
         headerStyle: {backgroundColor: '#0de78c'},
         headerStatusBarHeight: 20,
         headerTintColor: 'white',
-        tabBarShowLabel:false,
+        tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
         // tabBarStyle:{display:"none"}
-
       }}
       initialRouteName="order"
       style={styles.shadow}>
@@ -74,7 +71,7 @@ function MyTabs() {
             color = focused ? '#0de78c' : '#555';
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
-          headerShown:false
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -146,6 +143,7 @@ const App = () => {
         <Stack.Screen
           name="drawer"
           component={MyDrawer}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

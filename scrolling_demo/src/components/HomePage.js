@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import moment from 'moment';
+import React from 'react';
 import {
   TextInput,
   ScrollView,
@@ -10,7 +9,7 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import { DrawerActions } from '@react-navigation/native';
+import {DrawerActions} from '@react-navigation/native';
 
 const HomePage = ({navigation}) => {
   return (
@@ -25,7 +24,7 @@ const HomePage = ({navigation}) => {
         }}>
         <TouchableOpacity
           onPress={() => {
-            navigation.dispatch(DrawerActions.openDrawer())
+            navigation.dispatch(DrawerActions.openDrawer());
           }}>
           <Image
             style={{height: 40, width: 40}}
@@ -53,8 +52,11 @@ const HomePage = ({navigation}) => {
           }}
         />
       </View>
-      <ScrollView>
-        <ScrollView horizontal={true} style={{margin: 20}}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          horizontal={true}
+          style={{margin: 20}}
+          showsHorizontalScrollIndicator={false}>
           <View style={{}}>
             <View
               style={{
@@ -122,10 +124,8 @@ const HomePage = ({navigation}) => {
               style={{
                 margin: 20,
                 alignItems: 'center',
-                // borderWidth: 1,
                 padding: 10,
                 elevation: 3,
-                // backgroundColor:"white",
               }}>
               <Image
                 style={{height: 40, width: 40, resizeMode: 'contain'}}
@@ -141,9 +141,7 @@ const HomePage = ({navigation}) => {
               style={{
                 margin: 20,
                 alignItems: 'center',
-                // borderWidth: 1,
                 elevation: 3,
-                // backgroundColor:"yellow",
                 padding: 20,
               }}>
               <Image
@@ -210,6 +208,7 @@ const HomePage = ({navigation}) => {
         </View>
         <ScrollView
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           style={{backgroundColor: 'white', marginTop: 20}}>
           <View style={{maxWidth: '100%', padding: 20, marginRight: 30}}>
             <View
